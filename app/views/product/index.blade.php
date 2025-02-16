@@ -11,7 +11,7 @@
 @endif
 
 @if(isset($_SESSION['success']) && isset($_GET['msg']))
-    <span >{{ $_SESSION['sucsess'] }}</span>
+    <span >{{ $_SESSION['success'] }}</span>
 @endif
     <a href="{{ route('add-product') }}">Thêm</a>
     <table border="1">
@@ -27,8 +27,8 @@
             <td>{{ $item->name }}</td>
             <td><img src="{{ $item->avatar }}" alt="" style="width: 150px"></td>
             <td>
-                <a href="">Sửa</a>
-                <a href="">Xoá</a>
+                <a href="{{ route('detail-product/'. $item->id) }}">Sửa</a>
+                <a href="{{ route('destroy/'. $item->id) }}">Xoá</a>
             </td>
 
         </tr>

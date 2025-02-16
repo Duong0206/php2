@@ -20,11 +20,11 @@ $router->get('/', function(){
 });
 //định nghĩa đường dẫn trỏ đến Product Controller
 $router->get('list-product',[\App\Controllers\ProductController::class,'index']);
-$router->get('destroy/{id}',[\App\Controllers\ProductController::class,'destroy']);
 $router->get('add-product',[\App\Controllers\ProductController::class,'addProduct']);
 $router->post('store-product',[\App\Controllers\ProductController::class,'store']);
 $router->get('detail-product/{id}',[\App\Controllers\ProductController::class,'detail']);
-$router->post('edit-product/{id}',[\App\Controllers\ProductController::class,'editProduct']);
+$router->post('update-product/{id}',[\App\Controllers\ProductController::class,'updateProduct']);
+$router->get('destroy/{id}', [\App\Controllers\ProductController::class, 'destroy']);
 // khu vực cần quan tâm -----------
 //$router->get('test', [App\Controllers\ProductController::class, 'index']);
 

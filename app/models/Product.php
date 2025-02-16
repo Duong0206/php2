@@ -23,4 +23,25 @@ class Product extends BaseModel
         $this->setQuery($sql);
         return $this->execute([$name, $avatar]);
     }
+
+    public function getDetail($id)
+    {
+        $sql = "SELECT * FROM $this->table WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->loadRow([$id]);
+    }
+
+    public function editProduct($id, $name, $avatar)
+    {
+        $sql = "UPDATE $this->table SET name = ?, avatar = ? WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->execute([$name, $avatar, $id]);
+    }
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM $this->table WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->execute([$id]);
+    }
 }
