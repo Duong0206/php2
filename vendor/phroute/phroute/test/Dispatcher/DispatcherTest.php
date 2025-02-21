@@ -172,20 +172,20 @@ class DispatcherTest extends \PHPUnit\Framework\TestCase {
     {
         $r = $this->router();
 
-        $r->any( array('products/store/{store:i}?', 'products'), array(__NAMESPACE__.'\\Test','route'));
+        $r->any( array('players/store/{store:i}?', 'players'), array(__NAMESPACE__.'\\Test','route'));
 
-        $this->assertEquals('products/store', $r->route('products'));
-        $this->assertEquals('products/store/1', $r->route('products', array(1)));
+        $this->assertEquals('players/store', $r->route('players'));
+        $this->assertEquals('players/store/1', $r->route('players', array(1)));
     }
 
     public function testReverseRouteWithDashes()
     {
         $r = $this->router();
 
-        $r->any( array('product-catalogue/store/{store:i}?', 'products'), array(__NAMESPACE__.'\\Test','route'));
+        $r->any( array('player-catalogue/store/{store:i}?', 'players'), array(__NAMESPACE__.'\\Test','route'));
 
-        $this->assertEquals('product-catalogue/store', $r->route('products'));
-        $this->assertEquals('product-catalogue/store/1', $r->route('products', array(1)));
+        $this->assertEquals('player-catalogue/store', $r->route('players'));
+        $this->assertEquals('player-catalogue/store/1', $r->route('players', array(1)));
     }
 
     public function testGroupsReverseRoutes()
@@ -193,23 +193,23 @@ class DispatcherTest extends \PHPUnit\Framework\TestCase {
         $r = $this->router();
 
         $r->group([], function($r) {
-            $r->any(['products/store/{store:i}?', 'products'], array(__NAMESPACE__.'\\Test','route'));
+            $r->any(['players/store/{store:i}?', 'players'], array(__NAMESPACE__.'\\Test','route'));
         });
 
-        $this->assertEquals('products/store', $r->route('products'));
-        $this->assertEquals('products/store/1', $r->route('products', array(1)));
+        $this->assertEquals('players/store', $r->route('players'));
+        $this->assertEquals('players/store/1', $r->route('players', array(1)));
     }
 
     public function testPrefixGroupsReverseRoutes()
     {
         $r = $this->router();
 
-        $r->group(['prefix' => 'product-catalogue/store'], function($r) {
-            $r->any(['items/{store:i}?', 'products'], array(__NAMESPACE__.'\\Test','route'));
+        $r->group(['prefix' => 'player-catalogue/store'], function($r) {
+            $r->any(['items/{store:i}?', 'players'], array(__NAMESPACE__.'\\Test','route'));
         });
 
-        $this->assertEquals('product-catalogue/store/items', $r->route('products'));
-        $this->assertEquals('product-catalogue/store/items/1', $r->route('products', array(1)));
+        $this->assertEquals('player-catalogue/store/items', $r->route('players'));
+        $this->assertEquals('player-catalogue/store/items/1', $r->route('players', array(1)));
     }
 
     public function testMissingParameterReverseRoute()
@@ -218,9 +218,9 @@ class DispatcherTest extends \PHPUnit\Framework\TestCase {
 
         $r = $this->router();
 
-        $r->any( array('products/store/{store:i}', 'products'), array(__NAMESPACE__.'\\Test','route'));
+        $r->any( array('players/store/{store:i}', 'players'), array(__NAMESPACE__.'\\Test','route'));
 
-        $this->assertEquals('products/store', $r->route('products'));
+        $this->assertEquals('players/store', $r->route('players'));
     }
 
     public function testDuplicateVariableNameError()

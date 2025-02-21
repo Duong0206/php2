@@ -211,8 +211,8 @@ $router->group(['prefix' => 'admin'], function($router){
         return 'page management';
     });
 
-    $router->get('products', function(){
-        return 'product management';
+    $router->get('players', function(){
+        return 'player management';
     });
 
     $router->get('orders', function(){

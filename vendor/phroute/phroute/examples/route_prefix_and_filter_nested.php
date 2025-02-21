@@ -18,8 +18,8 @@ $collector->group(array('prefix' => 'admin'), function(RouteCollector $collector
             return 'page management';
         });
 
-        $collector->get('products', function(){
-            return 'product management';
+        $collector->get('players', function(){
+            return 'player management';
         });
     });
 
@@ -32,5 +32,5 @@ $collector->group(array('prefix' => 'admin'), function(RouteCollector $collector
 $dispatcher =  new Dispatcher($collector->getData());
 
 echo $dispatcher->dispatch('GET', '/admin/pages'), "\n"; // Nope!
-echo $dispatcher->dispatch('GET', '/admin/products'), "\n"; // Nope!
+echo $dispatcher->dispatch('GET', '/admin/players'), "\n"; // Nope!
 echo $dispatcher->dispatch('GET', '/admin/orders'), "\n"; // order management

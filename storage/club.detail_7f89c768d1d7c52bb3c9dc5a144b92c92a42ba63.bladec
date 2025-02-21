@@ -1,0 +1,86 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('content'); ?>
+
+<div class="container">
+ <h2>Danh sách cầu thủ CLB: <?php echo \htmlentities($club->club_name??'', ENT_QUOTES, 'UTF-8', false); ?></h2>
+ <br>
+ MÃ CLB: <strong> <?php echo \htmlentities($club->club_id??'', ENT_QUOTES, 'UTF-8', false); ?></strong>
+ <br>
+ <br>
+ <?php if(isset($players) && count($players) > 0): ?>
+ <table class="table table-striped table-bordered table-hover">
+ <thead>
+ <tr>
+ <th>ID</th>
+ <th>Name</th>
+ <th>Avatar</th>
+ <th>Action</th>
+ </tr>
+ </thead>
+ <tbody>
+ <?php $__currentLoopData = $players; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $player): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?php echo \htmlentities($player->id??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($player->name??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><img src="<?php echo \htmlentities($player->avatar??'', ENT_QUOTES, 'UTF-8', false); ?>" alt="" style="width: 150px"></td>
+ <td>
+ <a class="btn btn-warning" href="<?php echo \htmlentities(route('detail-player/'. $player->id)??'', ENT_QUOTES, 'UTF-8', false); ?>">Sửa</a>
+ <a class="btn btn-danger" href="<?php echo \htmlentities(route('destroy/'. $player->id)??'', ENT_QUOTES, 'UTF-8', false); ?>" onclick="return confirm('bạn có chắc chắn muốn xóa?')" >Xoá</a>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+ <?php else: ?>
+ <p>Không có cầu thủ nào thuộc câu lạc bộ này.</p>
+ <?php endif; ?>
+
+ <div class="card mb-4">
+ <div class="card-header">
+ Thêm mới cầu thủ
+ </div>
+ <div class="card-body">
+ <form action="<?php echo \htmlentities(route('store-player')??'', ENT_QUOTES, 'UTF-8', false); ?>" method="POST">
+ <input type='hidden' name='<?php  echo '_token'; ?>' value='<?php echo $this->csrf_token; ?>'/>
+ <div class="form-group">
+ <label for="name">Tên cầu thủ</label>
+ <input type="text" name="name" id="name" class="form-control" placeholder="Nhập tên cầu thủ" required>
+ </div>
+ <div class="form-group">
+ <label for="avatar">Avatar (URL)</label>
+ <input type="text" name="avatar" id="avatar" class="form-control" placeholder="Nhập URL hình ảnh">
+ </div>
+ <div class="form-group">
+ <label for="">Vị Trí</label>
+ <select name="position" id="position" class="form-control">
+ <option value="Tiền đạo" <?php echo \htmlentities(isset($player) && $player->position == 'Tiền đạo' ? 'selected' : ''??'', ENT_QUOTES, 'UTF-8', false); ?>>Tiền đạo</option>
+ <option value="Tiền vệ" <?php echo \htmlentities(isset($player) && $player->position == 'Tiền vệ' ? 'selected' : ''??'', ENT_QUOTES, 'UTF-8', false); ?>>Tiền vệ</option>
+ <option value="Trung vệ" <?php echo \htmlentities(isset($player) && $player->position == 'Trung vệ' ? 'selected' : ''??'', ENT_QUOTES, 'UTF-8', false); ?>>Trung vệ</option>
+ <option value="Hậu vệ" <?php echo \htmlentities(isset($player) && $player->position == 'Hậu vệ' ? 'selected' : ''??'', ENT_QUOTES, 'UTF-8', false); ?>>Hậu vệ</option>
+ <option value="Thủ Môn" <?php echo \htmlentities(isset($player) && $player->position == 'Thủ Môn' ? 'selected' : ''??'', ENT_QUOTES, 'UTF-8', false); ?>>Thủ Môn</option>
+ </select>
+ </div>
+ <div class="form-group">
+ <label for="">Số bàn thắng</label>
+ <input type="number" name="number_of_goal" class="form-control" id="" value="<?php echo \htmlentities($player->number_of_goal??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ <div class="form-group">
+ <label for="club">Club</label>
+ <input type="text" name="club_id" class="form-control" value="<?php echo \htmlentities($club->club_id??'', ENT_QUOTES, 'UTF-8', false); ?>" readonly>
+ </div>
+ <button type="submit" name="add" class="btn btn-success">Thêm cầu thủ</button>
+ </form>
+ </div>
+ </div>
+
+ <a href="<?php echo \htmlentities(route('club')??'', ENT_QUOTES, 'UTF-8', false); ?>">Quay lại danh sách CLB</a>
+</div>
+
+
+
+
+
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>

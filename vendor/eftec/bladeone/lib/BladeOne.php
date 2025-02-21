@@ -46,7 +46,7 @@ class BladeOne
     public const MODE_AUTO = 0;
     /** @var int Then compiled file is always replaced. It's slow and it's useful for development. */
     public const MODE_SLOW = 1;
-    /** @var int The compiled file is never replaced. It's fast and it's useful for production. */
+    /** @var int The compiled file is never replaced. It's fast and it's useful for playerion. */
     public const MODE_FAST = 2;
     /** @var int DEBUG MODE, the file is always compiled and the filename is identifiable. */
     public const MODE_DEBUG = 5;
