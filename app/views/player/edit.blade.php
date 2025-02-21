@@ -34,7 +34,6 @@
             <option value="Hậu vệ" {{ isset($player) && $player->position == 'Hậu vệ' ? 'selected' : '' }}>Hậu vệ</option>
             <option value="Thủ Môn" {{ isset($player) && $player->position == 'Thủ Môn' ? 'selected' : '' }}>Thủ Môn</option>
         </select>
-
     </div>
 
     <div class="form-group">
